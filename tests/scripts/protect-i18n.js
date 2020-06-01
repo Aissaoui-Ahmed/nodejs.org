@@ -25,7 +25,7 @@ const fs = require('fs')
 const path = require('path')
 
 // Execute Git Diff for get all files with changes.
-const results = execSync('git diff --cached --name-only')
+const results = execSync('git diff --cached --name-only locale/ :!locale/en')
 
 // Create array with all files.
 const arrayResults = results.toString().trim().split('\n')
@@ -35,8 +35,7 @@ const changedLocalizedFiles = []
 
 function gitHook () {
   // Define RegExp with reg param.
-  const reg = /locale\/(?!en)/g;
-
+  const reg = /\//g
   // Iterate in array for search if RegExp is true or not.
   arrayResults.forEach(file => {
     // Control for search if exist or not file.
